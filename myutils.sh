@@ -14,5 +14,5 @@ grep -v "import torch._six" vision/references/detection/coco_eval.py | sed 's/to
 
 
 sudo apt install imagemagick
-convert -crop 4x3@ cropped.png +repage +adjoin /content/dataset/images/%0d.png
-convert -crop 4x3@ mask.png +repage +adjoin /content/dataset/masks/%0d.png
+convert -crop 2x2@ cropped.png +repage +adjoin /content/dataset/images/%0d.png
+convert -crop 2x2@ mask.png +repage +adjoin /content/dataset/masks/%0d.png
