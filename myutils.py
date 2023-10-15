@@ -23,8 +23,11 @@ def draw_image(image, output, coco_names):
   result_image = np.array(image.copy())
   colors = [[random.randint(0, 255) for _ in range(3)] for _ in coco_names]
   
+  cutoff = 0.5
+  if sum(output['scores'] > cutoff) == 0: cutoff = 0.05
+
   for box, label, score in zip(output['boxes'], output['labels'], output['scores']):
-    if score > 0.5:
+    if score > cutoff:
       color = random.choice(colors)
   
       # draw box
