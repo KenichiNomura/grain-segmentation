@@ -165,7 +165,7 @@ def get_traininig_and_test_dataset(datapath):
 
   return train_dataset, test_dataset, train_data_loader, test_data_loader
 
-def modify_model(classes_num):
+def modify_model(classes_num, hidden_layer=256):
   # model already trained on COCO loaded from PyTorch repository
   maskrcnn_model = torchvision.models.detection.maskrcnn_resnet50_fpn(pretrained=True)
   # number of input features identification
@@ -173,7 +173,7 @@ def modify_model(classes_num):
   # head is changed
   maskrcnn_model.roi_heads.box_predictor = FastRCNNPredictor(in_features, classes_num)
   in_features_mask = maskrcnn_model.roi_heads.mask_predictor.conv5_mask.in_channels
-  hidden_layer = 256
+  hidden_layer = hidden_layer
   maskrcnn_model.roi_heads.mask_predictor = MaskRCNNPredictor(in_features_mask, hidden_layer, classes_num)
   return maskrcnn_model
 
