@@ -46,9 +46,11 @@ def draw_image(image, output, coco_names):
 def draw_masks(output):
 
   masks = None
+  cutoff = 0.5
+  if sum(output['scores'] > cutoff) == 0: cutoff = 0.05
 
   for score, mask in zip(output['scores'], output['masks']):
-    if score > 0.5:
+    if score > cutoff:
       if masks is None:
         masks = mask
       else:
