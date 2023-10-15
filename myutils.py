@@ -40,7 +40,7 @@ def draw_image(image, output, coco_names):
       cv2.putText(result_image, display_txt, (c1[0], c1[1] - 2), 0, tl / 3, [225, 255, 255], thickness=tf, lineType=cv2.LINE_AA)
   
   plt.figure(figsize=(10, 6))
-  plt.imshow(result_image)
+  plt.imshow(result_image, cmap='gray')
   plt.savefig('save_image.jpg')
 
 def draw_masks(output):
