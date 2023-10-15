@@ -24,7 +24,7 @@ def draw_image(image, output, coco_names):
   colors = [[random.randint(0, 255) for _ in range(3)] for _ in coco_names]
   
   cutoff = 0.5
-  if sum(output['scores'] > cutoff) == 0: cutoff = 0.05
+  if sum(output['scores'] > cutoff) < 5: cutoff = 0.05
 
   for box, label, score in zip(output['boxes'], output['labels'], output['scores']):
     if score > cutoff:
@@ -50,7 +50,7 @@ def draw_masks(output):
 
   masks = None
   cutoff = 0.5
-  if sum(output['scores'] > cutoff) == 0: cutoff = 0.05
+  if sum(output['scores'] > cutoff) < 5: cutoff = 0.05
 
   for score, mask in zip(output['scores'], output['masks']):
     if score > cutoff:
